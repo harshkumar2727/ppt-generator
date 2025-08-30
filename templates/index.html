@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto PPT Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">Auto PPT Generator</h1>
+            <p class="text-gray-600 mt-2">Turn your text into a styled PowerPoint presentation instantly.</p>
+        </header>
+
+        <main>
+            <form id="ppt-form" action="/generate" method="post" enctype="multipart/form-data" class="bg-white p-8 rounded-lg shadow-md space-y-6">
+                
+                <div>
+                    <label for="text" class="block text-sm font-medium text-gray-700 mb-1">Paste Your Text</label>
+                    <textarea id="text" name="text" rows="10" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="Paste your long-form text or markdown here..."></textarea>
+                </div>
+
+                <div>
+                    <label for="guidance" class="block text-sm font-medium text-gray-700 mb-1">Guidance (Optional)</label>
+                    <input type="text" id="guidance" name="guidance" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="e.g., 'Turn this into an investor pitch deck'">
+                </div>
+
+                <div>
+                    <label for="template" class="block text-sm font-medium text-gray-700 mb-1">Upload PowerPoint Template</label>
+                    <input type="file" id="template" name="template" accept=".pptx,.potx" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" id="generate-btn" class="w-full md:w-auto bg-indigo-600 text-white font-bold py-3 px-6 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-transform transform hover:scale-105">
+                        Generate Presentation
+                    </button>
+                </div>
+            </form>
+
+            <div id="loading-indicator" class="hidden text-center mt-6">
+                <p class="text-gray-600">Generating your presentation... Please wait.</p>
+                <div class="loader mt-4"></div>
+            </div>
+
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
